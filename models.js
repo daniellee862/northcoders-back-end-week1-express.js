@@ -81,10 +81,34 @@ const readPetsById = (petId) => {
   });
 };
 
+const readAndModifyOwnerById = (updatedOwnerFields, ownerId) => {
+  return fs
+    .readFile(`./data/owners/o${ownerId}.json`, "UTF8")
+    .then((owner) => {
+      const ownerObj = JSON.parse(owner);
+      return ownerObj;
+    })
+    .then((ownerObj) => {
+      const { name, age } = updatedOwnerFields;
+      console.log(updatedOwnerFields);
+      ownerObj.name = name;
+      ownerObj.age = age;
+
+      fs.writeFile(
+        `./data/owners/o${ownerId}.json`,
+        JSON.stringify(ownerObj),
+        "utf8"
+      );
+
+      return ownerObj;
+    });
+};
+
 module.exports = {
   readOwnerById,
   readAllOwners,
   readPetsByOwner,
   readPetsByTemperament,
   readPetsById,
+  readAndModifyOwnerById,
 };

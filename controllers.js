@@ -4,6 +4,7 @@ const {
   readPetsByOwner,
   readPetsByTemperament,
   readPetsById,
+  readAndModifyOwnerById,
 } = require("./models");
 
 const fetchOwnerById = (req, res) => {
@@ -35,11 +36,6 @@ const fetchPetsByQuery = (req, res) => {
   });
 };
 
-// Build the following endpoint:
-// GET /pets/:id
-// Considerations:
-// responds with the data of the relevant pet
-
 const fetchPetsById = (req, res) => {
   const petId = req.params.id;
 
@@ -48,10 +44,26 @@ const fetchPetsById = (req, res) => {
   });
 };
 
+const updateOwnerById = (req, res) => {
+  const updatedData = req.body;
+  const ownerId = req.params.id;
+  readAndModifyOwnerById(updatedData, ownerId).then((updatedOwner) => {
+    res.status(200).send(updatedOwner);
+    console.log(`owner${ownerId} has been updated....`);
+  });
+
+  //Body.
+  /*  {
+    "name": "Daniel Clough",
+    "age": "36"
+  } */
+};
+
 module.exports = {
   fetchOwnerById,
   fetchAllOwners,
   fetchPetsByOwner,
   fetchPetsByQuery,
   fetchPetsById,
+  updateOwnerById,
 };
