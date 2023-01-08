@@ -52,11 +52,14 @@ const updateOwnerById = (req, res) => {
     console.log(`owner${ownerId} has been updated....`);
   });
 
-  //Body.
-  /*  {
+  /*  
+ Body:
+   {
     "name": "Daniel Clough",
     "age": "36"
-  } */
+  }
+  path: 5000/api/owners/update/4 
+  */
 };
 
 module.exports = {

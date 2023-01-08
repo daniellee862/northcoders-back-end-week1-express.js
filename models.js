@@ -90,7 +90,6 @@ const readAndModifyOwnerById = (updatedOwnerFields, ownerId) => {
     })
     .then((ownerObj) => {
       const { name, age } = updatedOwnerFields;
-      console.log(updatedOwnerFields);
       ownerObj.name = name;
       ownerObj.age = age;
 
